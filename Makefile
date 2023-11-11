@@ -4,9 +4,9 @@ NAME_S = server
 SRC_C = client.c
 SRC_C = server.c
 
-LINBFT = ./libft/
-PRINTF = ./ft_printf/
-GNL = ./get_next_line/
+LIBFT = ./libft/
+PRINTF = ./printf/
+GNL = ./getnextline/
 OBJS = ./objs
 
 OBJS_C = $(addprefix $(OBJS)/,$(SRC_C:.c=.o))
@@ -25,7 +25,7 @@ RM = rm -rf
 -include $(DEPS_C)
 -include $(DEPS_S)
 
-all 
+all:
 	$(MAKE) --no-print-directory -C $(LIBFT)
 	$(MAKE) --no-print-directory -C $(PRINTF)
 	$(MAKE) --no-print-directory -C $(GNL)
