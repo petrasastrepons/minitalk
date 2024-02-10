@@ -6,7 +6,7 @@
 #    By: psastre <psastre@student.42barcelo>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/03 13:59:52 by psastre           #+#    #+#              #
-#    Updated: 2024/02/03 14:00:04 by psastre          ###   ########.fr        #
+#    Updated: 2024/02/10 12:51:27 by psastre          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,6 @@ SRC_C = client.c
 SRC_C = server.c
 
 LIBFT = ./libft/
-PRINTF = ./printf/
 GNL = ./getnextline/
 OBJS = ./objs
 
@@ -28,7 +27,6 @@ DEPS_S = $(addprefix $(OBJS)/,$(SRC_S:.c=.d))
 
 INC = -I minitalk.h\
 		-I $(LIBFT)\
-		-I $(PRINTF)\
 		-I $(GNL)
 
 CFLAGS = -Wall -Wextra -Werror
@@ -39,7 +37,6 @@ RM = rm -rf
 
 all:
 	$(MAKE) --no-print-directory -C $(LIBFT)
-	$(MAKE) --no-print-directory -C $(PRINTF)
 	$(MAKE) --no-print-directory -C $(GNL)
 	-mkdir $(OBJS)
 	$(MAKE) --no-print-directory -C $(NAME_C)
@@ -49,10 +46,10 @@ $(OBJS)/%.o: %.c
 	$(CC) $(CFLAGS) -MMD $(INC) -c $< -o $@
 
 $(NAME_C): $(OBJS_C)
-	$(CC) $(CFLAGS) $(INC) $(LIBFT)libft.a $(PRINTF)libftprintf.a $(GNL)get_next_line.a $(OBJS_C) -o $@
+	$(CC) $(CFLAGS) $(INC) $(LIBFT)libft.a $(GNL)get_next_line.a $(OBJS_C) -o $@
 
 $(NAME_S): $(OBJS_S)
-	$(CC) $(CFLAGS) $(INC) $(LIBFT)libft.a $(PRINTF)libftprintf.a $(GNL)get_next_line.a $(OBJS_S) -o $@
+	$(CC) $(CFLAGS) $(INC) $(LIBFT)libft.a $(GNL)get_next_line.a $(OBJS_S) -o $@
 
 clean:
 	make clean --no-print-directory -C $(LIBFT)
